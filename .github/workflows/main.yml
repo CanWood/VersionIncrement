@@ -30,7 +30,6 @@ jobs:
         echo $VER >version.txt
 
     # Commits the updated version.txt to the repo
-    - name: Commit the version.txt
     - uses: stefanzweifel/git-auto-commit-action@v4.2.0
       with:
         commit_message: Version incremented by Action

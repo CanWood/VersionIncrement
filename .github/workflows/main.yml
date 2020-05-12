@@ -2,16 +2,19 @@
 
 name: modify version.txt
 
-# Controls when the action will run. Triggers the workflow on push or pull request
+# Controls when the action will run. Triggers the workflow on push
 # events but only for the master branch
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - '.github/workflows/main.yml'
+      - 'version.txt'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "Increment"
+  Increment:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -19,14 +22,15 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Run a multi-line script
+    # Runs a multi-line using the runners shell
+    - name: Read increment and output version.txt
       run: |
         VER=$(cat version.txt)
         VER=$((VER + 1))
         echo $VER >version.txt
 
+    # Commits the updated version.txt to the repo
+    - name: Commit the version.txt
     - uses: stefanzweifel/git-auto-commit-action@v4.2.0
       with:
         commit_message: Version incremented by Action

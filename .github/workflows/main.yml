@@ -23,7 +23,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
       with: 
-        token: ${{ secrets.GITHUB_TOKEN_ACTION }}
+        token: ${{ secrets.TOKEN_ACTION }}
     # Runs a multi-line using the runners shell
     - name: Read increment and output version.txt
       run: |
@@ -34,7 +34,7 @@ jobs:
     # Commits the updated version.txt to the repo
     - uses: stefanzweifel/git-auto-commit-action@v4.2.0
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN_ACTION }}
+        github-token: ${{ secrets.TOKEN_ACTION }}
         commit_message: Version incremented by Action
     
 
